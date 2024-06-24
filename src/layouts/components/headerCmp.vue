@@ -19,7 +19,7 @@
             mode="horizontal"
             :ellipsis="false"
             @select="handleSelect"       
-            :class="{ 'is-active': topNavigation }"   
+            :class="{ 'is-active': topNavigation, 'moved': topNavigationMoved }"
         >
             <el-sub-menu index="1">
                 <template #title>company</template>
@@ -42,8 +42,19 @@ import { ref } from 'vue'
 // const activeIndex = ref('1')
 // const activeIndex2 = ref('1')
 const topNavigation = ref(false);
+const topNavigationMoved = ref(false);
 const openMoGnb = () => {
-    topNavigation.value = !topNavigation.value;
+    if (topNavigation.value) {
+        topNavigationMoved.value = false;
+        setTimeout(() => {
+            topNavigation.value = false;
+        }, 100); 
+    } else {
+        topNavigation.value = true;
+        setTimeout(() => {
+            topNavigationMoved.value = true;
+        }, 100); 
+    }
 }
 const handleSelect = (key, keyPath) => {
     console.log(key, keyPath)
