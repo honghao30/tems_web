@@ -15,7 +15,7 @@ const props = defineProps({
     ButtonName: String
 });
 const emit = defineEmits(['click']);
-const handleClick = (event) => {
+const handleClick = () => {
     emit('click');
 };
 </script>
