@@ -19,7 +19,7 @@
       </div>
       <!-- //비주얼 -->
       <div class="main-content">
-        <div class="section-temps__wrap" id="about">
+        <div class="section-temps__wrap slideup" id="about">
           <div class="section-title-text">
               Creative <br>
               Development Group <br>
@@ -34,10 +34,11 @@
         <!-- //abou team -->
         <OurBizCmp
           :BizList="OurBiz"
+          className="slideup"
           @Work-Button="HandleInquiry"
         />
         <!-- process -->
-        <div class="section-process__wrap" id="process">
+        <div class="section-process__wrap slideup" id="process">
             <div class="section-title-text">
               temps<br>
               working process
@@ -55,7 +56,7 @@
             </div>
         </div>
         <!-- Our Team -->
-        <div class="section-team__wrap" id="team"> 
+        <div class="section-team__wrap slideup" id="team"> 
             <div class="tit">
                 OUR TEAM
             </div>
@@ -73,7 +74,7 @@
         <!-- partner -->
         <PartnersCmp />
         <!-- work -->
-        <div class="section-work__wrap" id="workSection">
+        <div class="section-work__wrap slideup" id="workSection">
             <div class="section-title-text">
               temps<br>
               works
@@ -89,6 +90,7 @@
         <!-- product -->
         <ProductCmp
           :ProductData="ProductData"
+          className="slideup"
           @button-click="handleProdButtonClick"          
         />
         <!-- contact -->
@@ -200,7 +202,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted, onUnmounted } from 'vue'
 import InquiryButton from '@/components/InquiryButtonCmp.vue';
 import OurBizCmp from '@/components/OurBizCmp.vue';
 import ProcessCmp from '@/components/ProcessCmp.vue';
@@ -456,4 +458,27 @@ const handleProjectInquiry = () => {
       contactSection.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
+// 스크롤 이벤트 핸들러 함수
+const handleScroll = () => {
+  let obj = document.querySelectorAll('.slideup');
+  let height = window.innerHeight;
+
+  obj.forEach(section => {
+    let { top, bottom } = section.getBoundingClientRect();
+    let isInViewport = top < height && bottom > 0;
+
+    if (isInViewport) {
+      section.classList.add('slideInUp');
+    }
+  });
+};
 </script>

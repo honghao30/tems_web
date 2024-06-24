@@ -1,5 +1,7 @@
 <template>
-    <div class="section-contact__wrap" id="contactSection">
+    <div class="section-contact__wrap slideup"
+        id="contactSection"
+    >
         <div class="section-title">
             <p>CONTACT US</p>
         </div>

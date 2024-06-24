@@ -1,5 +1,7 @@
 <template>
-    <div class="section-partner__wrap" id="partner">
+    <div class="section-partner__wrap slideup"
+        id="partner"
+    >
         <div class="main-text">
             템스는 스타트업에서 부터 중견기업까지 <br>
             세상을 바꾸어가는 많은 <br>

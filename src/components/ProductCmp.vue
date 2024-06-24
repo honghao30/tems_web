@@ -3,6 +3,7 @@
         <div class="section-product__wrap"
             v-for="(prod, index) in ProductData" :key="index"
             :id="prod.sectionId"
+            :class="className"
         >
             <div class="section-title">
                 {{ prod.title }}
@@ -41,7 +42,8 @@ import { defineEmits } from 'vue'
 import InquiryButton from '@/components/InquiryButtonCmp.vue';
 
 const props = defineProps({
-    ProductData: Object
+    ProductData: Object,
+    className: String
 });
 
 const { emit } = defineEmits(['button-click']);

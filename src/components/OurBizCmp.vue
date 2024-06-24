@@ -1,5 +1,7 @@
 <template>
-    <div class="section-biz__wrap">
+    <div class="section-biz__wrap"
+        :class="className"
+    >
         <div class="biz-list__wrap">
             <el-card shadow="never"
                 v-for="(Biz, index) in BizList"
@@ -27,7 +29,8 @@
 
 <script setup>
 const props = defineProps({
-    BizList: Object
+    BizList: Object,
+    className: String
 });
 
 const emit = defineEmits(['Work-Button']);
