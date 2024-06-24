@@ -90,8 +90,7 @@
         <!-- product -->
         <ProductCmp
           :ProductData="ProductData"
-          className="slideup"
-          @click="handleProdButtonClick(event)"          
+          className="slideup"                
         />
         <!-- contact -->
         <ContactCmp />
@@ -446,12 +445,6 @@ const goBack = () => {
 
 const HandleInquiry = ({ Biz, index }) => {
   console.log(index)
-}
-
-const handleProdButtonClick = (event) => {
-  event.preventDefault();
-  console.log("handleProdButtonClick");
-  dialogWorkDetailModal.value = true;  
 }
 
 const handleProjectInquiry = () => {

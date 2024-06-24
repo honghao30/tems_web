@@ -2,7 +2,7 @@
     <div>
         <ul class="work-list__wrap">
             <li v-for="Work in Works" :key="Work">
-                <a href="#" @click="showDetail(Work)">
+                <a href="#none" @click="showDetail(Work)">
                     <div class="port-thumb">
                         <img :src="`${Work.thumbnail}`" alt="" />
                     </div>

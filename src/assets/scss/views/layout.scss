@@ -1174,7 +1174,7 @@ body {
 } 
 
 .el-overlay {
-  background-color: rgba(33, 33, 33, 0.6);
+  background-color: rgba(33, 33, 33, 0.6) !important;
 }
 .contact-dialog {  
   font-family: $font-nanum;
@@ -1418,6 +1418,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  @media #{$phone} {
+    display: none;
+  }
 }
 
 .circle {
