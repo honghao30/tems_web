@@ -5,6 +5,20 @@
             세상을 바꾸어가는 많은 <br>
             기업들과 함께하고 있습니다.            
         </div>
-        <div style="height: 500px;"></div>
+        <div style="height: 500px;">
+            <div class="container">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+        </div>
     </div>
 </template>
