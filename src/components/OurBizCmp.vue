@@ -26,8 +26,6 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue'
-
 const props = defineProps({
     BizList: Object
 });

@@ -2,6 +2,7 @@
     <div>
         <div class="section-product__wrap"
             v-for="(prod, index) in ProductData" :key="index"
+            :id="prod.sectionId"
         >
             <div class="section-title">
                 {{ prod.title }}
@@ -15,28 +16,20 @@
                         {{ prod.description }}
                     </div>
                     <div class="button__wrap">
-                        <el-button 
-                            link
-                            class="arrow-link"
-                            @click="handleButtonClick(prod)"
-                        >
-                            프로젝트 문의
-                            <i></i>
-                        </el-button>  
+                        <InquiryButton
+                            ButtonName="자세히 보기"
+                            @click="handleProjectInquiry"
+                        /> 
                     </div>
                 </div>
                 <div class="section-img">
                     <img :src="`${prod.images}`" alt="" />
                 </div>
                 <div class="button__wrap mo-only">
-                    <el-button 
-                        link
-                        class="arrow-link"
-                        @click="handleButtonClick(prod)"
-                    >
-                        프로젝트 문의
-                        <i></i>
-                    </el-button>  
+                    <InquiryButton
+                        ButtonName="자세히 보기"
+                        @click="handleProjectInquiry"
+                    /> 
                 </div>                
             </div>
         </div>
@@ -45,6 +38,7 @@
 
 <script setup>
 import { defineEmits } from 'vue'
+import InquiryButton from '@/components/InquiryButtonCmp.vue';
 
 const props = defineProps({
     ProductData: Object
@@ -55,5 +49,10 @@ const { emit } = defineEmits(['button-click']);
 const handleButtonClick = (prod) => {
     emit('button-click', prod);
 };
-
+const handleProjectInquiry = () => {
+  const contactSection = document.getElementById('contactSection');
+  if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 </script>

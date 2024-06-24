@@ -1,5 +1,5 @@
 <template>
-    <div class="section-contact__wrap">
+    <div class="section-contact__wrap" id="contactSection">
         <div class="section-title">
             <p>CONTACT US</p>
         </div>
@@ -37,14 +37,10 @@
                         <el-input v-model="ruleForm.desc" type="textarea"  placeholder="문의 또는 의뢰 내용을 입력하세요."  />
                     </el-form-item>
                     <el-form-item>
-                        <el-button 
-                            link
-                            class="arrow-link"
+                        <InquiryButton
+                            ButtonName="문의 하기"
                             @click="onSubmit"
-                        >
-                            프로젝트 문의
-                            <i></i>
-                        </el-button>                    
+                        />                  
                     </el-form-item>
                 </el-form>
             </div>
@@ -77,7 +73,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-
+import InquiryButton from '@/components/InquiryButtonCmp.vue';
 const formSize = ref('default')
 const ruleForm = reactive({
     name: '',

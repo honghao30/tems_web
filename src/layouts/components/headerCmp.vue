@@ -21,17 +21,17 @@
             @select="handleSelect"       
             :class="{ 'is-active': topNavigation, 'moved': topNavigationMoved }"
         >
-            <el-sub-menu index="1">
+        <el-sub-menu index="1">
                 <template #title>company</template>
-                <el-menu-item index="1-1"><el-link :underline="false" :href="'#'">about</el-link></el-menu-item>
-                <el-menu-item index="1-2"><el-link :underline="false" :href="'#'">process</el-link></el-menu-item>
-                <el-menu-item index="1-3"><el-link :underline="false" :href="'#'">team</el-link></el-menu-item>
-                <el-menu-item index="1-4"><el-link :underline="false" :href="'#'">partner</el-link></el-menu-item>
+                <el-menu-item index="1-1"><el-link :underline="false" href="#about">about</el-link></el-menu-item>
+                <el-menu-item index="1-2"><el-link :underline="false" href="#process">process</el-link></el-menu-item>
+                <el-menu-item index="1-3"><el-link :underline="false" href="#team">team</el-link></el-menu-item>
+                <el-menu-item index="1-4"><el-link :underline="false" href="#partner">partner</el-link></el-menu-item>
             </el-sub-menu>
-            <el-menu-item index="2"><el-link :underline="false" :href="'#'">works</el-link></el-menu-item>
-            <el-menu-item index="3"><el-link :underline="false" :href="'#'">service</el-link></el-menu-item>
-            <el-menu-item index="4"><el-link :underline="false" :href="'#'">product</el-link></el-menu-item>
-            <el-menu-item index="5" class="box-type"><el-link :underline="false" :href="'#'">contact us</el-link></el-menu-item>                                                
+            <el-menu-item index="2"><el-link :underline="false" href="#workSection">works</el-link></el-menu-item>
+            <el-menu-item index="3"><el-link :underline="false" href="#serviceSection">service</el-link></el-menu-item>
+            <el-menu-item index="4"><el-link :underline="false" href="#productSection">product</el-link></el-menu-item>
+            <el-menu-item index="5" class="box-type"><el-link :underline="false" href="#contactSection">contact us</el-link></el-menu-item>                                                
         </el-menu>
     </div>
 </template>
@@ -58,5 +58,12 @@ const openMoGnb = () => {
 }
 const handleSelect = (key, keyPath) => {
     console.log(key, keyPath)
+    const sectionId = keyPath[0].split('-').join('Section'); // 각 섹션의 ID와 일치하도록 조정
+    const section = document.getElementById(sectionId);
+    if (section) {
+        setTimeout(() => {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }, 500);        
+    }    
 }
 </script>

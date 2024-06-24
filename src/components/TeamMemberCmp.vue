@@ -15,19 +15,20 @@
             </div>
         </li>
         <li>
-            <el-button 
-            link
-            class="arrow-link"
-            >
-            프로젝트 문의
-            <i></i>
-            </el-button>  
+            <InquiryButton
+                ButtonName="입사지원 하기"
+                @click="handleApplication"
+            /> 
         </li>
     </ul>
 </template>
 
 <script setup>
+import InquiryButton from '@/components/InquiryButtonCmp.vue';
 const props = defineProps({
     MemberList: Object
 });
+const handleApplication = () => {
+    alert("입사지원 하셨습니다.");
+}
 </script>

@@ -4,7 +4,11 @@ body {
 .wrap {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;    
+  min-width: 1440px; 
+  @media #{$phone} {    
+    min-width: 100%;
+  }  
 }
 
 // header
@@ -13,8 +17,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  @media #{$phone} {
+  margin: 0 auto;
+  max-width: 1440px;  
+  min-width: 1440px;    
+  @media #{$tablet} {
     padding: 0 20px;
+    min-width: 100%;
   }
   .header__logo {    
     padding-top: rem(40px);
@@ -35,14 +43,14 @@ body {
       .el-link {        
         @include fontoption(rem(16px), #fff, 400, rem(19px));
         font-family: 'Gilroy';        
-        @media #{$phone} {
+        @media #{$tablet} {
           @include fontoption(rem(32px), #fff, 600, rem(39px));
-          padding-left: 100px;
+          padding-left: rem(100px);
         }        
       }
       .el-sub-menu {
         height: 34px;
-        @media #{$phone} {
+        @media #{$tablet} {
           &.is-opened {
             padding-bottom: 170px;
           }
@@ -69,9 +77,9 @@ body {
         .el-sub-menu__title {
           @include fontoption(rem(16px), #fff, 400, rem(19px));
           font-family: 'Gilroy';
-          @media #{$phone} {
+          @media #{$tablet} {
             @include fontoption(rem(32px), #fff, 600, rem(39px));
-            padding-left: 100px;
+            padding-left: rem(100px);
             display: block;
           }
           &:hover {
@@ -90,7 +98,7 @@ body {
         &.is-active {
           border-bottom: 0;
         }
-        @media #{$phone} {
+        @media #{$tablet} {
           padding-left: 0;
         }
         &:hover {
@@ -100,7 +108,7 @@ body {
             color:#777777;
           }
         }
-        @media #{$desktop} {
+        @media #{$desktop1025} {
           &.box-type {
             border:1px solid #727272;
             background-color: #2E2E2E;
@@ -127,7 +135,7 @@ body {
         color:#fff;
       }
     }
-    @media #{$phone} {
+    @media #{$tablet} {
       display: none;
       left: -100%;
       transition: all 0.3s ease-in;
@@ -170,10 +178,10 @@ body {
     }
   }
 }
-@media #{$phone} {
+@media #{$tablet} {
   .el-popper.is-pure {
-    left: 90px;
-    top: 123px;
+    left: 90px !important;
+    top: 123px !important;
     .el-menu-item {
       display: block !important;
       font-size: rem(24px);      
@@ -183,7 +191,7 @@ body {
 }
 .el-button.el-button--default.hamburger_button {
   display:none;
-  @media #{$phone} {
+  @media #{$tablet} {
     display: block;
     margin-top: 20px;
     background-color: transparent !important;
@@ -259,12 +267,19 @@ body {
   &.arrow-link {
     display: flex;
     align-items: center;
-    @include fontoption(rem(14px), #fff, 300, rem(16px));
+    @include fontoption(rem(14px), #fff !important, 300, rem(16px));
     font-family: $font-nanum;
     position: relative;
     gap: 8px;
     &:focus {
       color:#fff;
+    }
+    &:hover {
+      span {
+        i {
+          animation: arrowMotion 1s ease-in-out infinite;
+        }
+      }
     }
     i {
         display: flex;
@@ -301,6 +316,17 @@ body {
       height: 34px;
       background: #FFC42B;
     }
+  }
+}
+@keyframes arrowMotion {
+  0% {
+      transform: translateX(0);
+  }
+  50% {
+      transform: translateX(8px);
+  }
+  100% {
+      transform: translateX(0);
   }
 }
 
@@ -388,9 +414,11 @@ body {
   width: 100%;
   margin: 0 auto;
   max-width: 1440px;  
+  min-width: 1440px;
   padding: 0 30px;
   @media #{$phone} {
     padding: 0 20px;
+    min-width: 100%;
   }
 }
 
@@ -518,6 +546,13 @@ body {
           border:1px solid #727272;
           @include fontoption(13px,#989898, 400, 15px);
           font-family: $font-gilroy;
+          transition: all 0.5s;
+          &:hover {
+            color: #fff;            
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            border-radius: 25px;
+          }
         }
       }
     }
@@ -561,7 +596,7 @@ body {
   .process-list__wrap {
     display: flex;
     justify-content: space-between;
-    gap: 140px;   
+    gap: rem(140px);   
     padding: 22px 0; 
     @media #{$phone} {
       gap: 0px;   
@@ -570,7 +605,7 @@ body {
     }    
     .description {
     width: 100%;
-    max-width: 327px;
+    max-width: rem(327px);
     @include fontoption(13px,#fff, 300, 21.94px);
     font-family: $font-nanum;
     box-shadow: 3px 9px 13.6px 0px #2E2E2E3D;
@@ -834,6 +869,12 @@ body {
   li {
     width: calc((100% / 3) - 24px);
     aspect-ratio: 1/1;
+    &:hover {
+      img {
+        transform: scale(1.1);
+        transition: all 0.3s ease-in-out;
+      }
+    }
     .port-thumb {
       width: 100%;
       aspect-ratio: 1/0.7;
@@ -841,6 +882,7 @@ body {
       img {
         width: 100%;        
         object-fit: cover;
+        transition: all 0.3s ease-in-out;
       }
     }
     @media #{$phone} {
@@ -1077,12 +1119,6 @@ body {
             padding: 1px 11px 1px 0;
           }    
         }
-        .el-button {
-          margin-left: 137px;
-          @media #{$phone} {
-            margin-left: 0;
-          }
-        }
       }
       .el-form-item__error {
         margin-top: 10px;
@@ -1137,6 +1173,11 @@ body {
 .contact-dialog {  
   font-family: $font-nanum;
   max-width: 500px;
+  @media #{$phone} {
+    max-width: 80%  !important;
+    //margin: 0  auto !important;
+    width: 80%  !important;
+  }
   .modal-header {
     .el-button--info {
       width: 50px;
@@ -1185,6 +1226,20 @@ body {
 .portfolio-dialog {
   padding:0;
   max-width: rem(1100px);
+  @media #{$phone} {
+    max-width: 100%  !important;
+    //margin: 0  auto !important;
+    width: 100%  !important;
+  }
+  @media #{$phone} {
+    .el-tabs__nav-next, 
+    .el-tabs__nav-prev {
+      display: none;
+    }
+    .el-tabs__nav-scroll {
+      overflow: visible;
+    }
+  }
   .modal-header {
     .el-button--info {
       width: 50px;
@@ -1223,6 +1278,9 @@ body {
     padding:0;
     height: 30px;
     margin: 0 25px;
+    @media #{$phone} {
+      margin: 0 10px;
+    }
     &.is-active {
       color:#E09400;
       position: relative;
@@ -1297,6 +1355,10 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 30px 50px;
+  flex-wrap: wrap;
+  @media #{$phone} {
+    padding: 14px 20px;
+  }    
   .tit {
     @include fontoption(rem(18px), #2E2E2E, 600, rem(22px));
     font-family: $font-gilroy;
@@ -1315,12 +1377,30 @@ body {
   .client-info {
     width: 100%;
     max-width: 126px;
+    @media #{$phone} {
+      flex:1;
+    }    
   }
   .develop-info {
     width: 100%;
     max-width: 233px;
+    @media #{$phone} {
+      flex:1;
+    }
   }
   .project-info {
     flex:1;
+    @media #{$phone} {
+      flex-basis: 100%; 
+      flex-grow: 1;
+      padding-top: 30px;
+    }
+  }
+}
+
+.el-backtop {
+  background-color: #000 !important;
+  svg {
+    color:#fff;
   }
 }

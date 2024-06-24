@@ -8,13 +8,10 @@
               기반한 아이디어로 가치를 구현합니다
             </div>
             <div class="main-btn">
-              <el-button 
-                link
-                class="arrow-link"
-              >
-                프로젝트 문의
-                <i></i>
-              </el-button>  
+                <InquiryButton
+                  ButtonName="프로젝트 상담"
+                  @click="handleProjectInquiry"
+                /> 
             </div>
             <img src="../assets/images/common/img_visual_top01.svg" class="bg__images_img_large" alt="" />
             <img src="../assets/images/common/img_visual_top02.svg" class="bg__images_img_img_sm" alt="" />            
@@ -22,7 +19,7 @@
       </div>
       <!-- //비주얼 -->
       <div class="main-content">
-        <div class="section-temps__wrap">
+        <div class="section-temps__wrap" id="about">
           <div class="section-title-text">
               Creative <br>
               Development Group <br>
@@ -40,7 +37,7 @@
           @Work-Button="HandleInquiry"
         />
         <!-- process -->
-        <div class="section-process__wrap">
+        <div class="section-process__wrap" id="process">
             <div class="section-title-text">
               temps<br>
               working process
@@ -58,7 +55,7 @@
             </div>
         </div>
         <!-- Our Team -->
-        <div class="section-team__wrap"> 
+        <div class="section-team__wrap" id="team"> 
             <div class="tit">
                 OUR TEAM
             </div>
@@ -76,7 +73,7 @@
         <!-- partner -->
         <PartnersCmp />
         <!-- work -->
-        <div class="section-work__wrap">
+        <div class="section-work__wrap" id="workSection">
             <div class="section-title-text">
               temps<br>
               works
@@ -92,12 +89,13 @@
         <!-- product -->
         <ProductCmp
           :ProductData="ProductData"
-          @button-click="handleProdButtonClick"
+          @button-click="handleProdButtonClick"          
         />
         <!-- contact -->
         <ContactCmp />
       </div>
       <FooterCmp />    
+      <el-backtop :right="50" :bottom="50" />
       <!-- //리스트 모달 -->
       <el-dialog
           v-model="dialogWorkModal" 
@@ -203,8 +201,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-// import { TabsPaneContext } from 'element-plus'
-
+import InquiryButton from '@/components/InquiryButtonCmp.vue';
 import OurBizCmp from '@/components/OurBizCmp.vue';
 import ProcessCmp from '@/components/ProcessCmp.vue';
 import TeamMemberCmp from '@/components/TeamMemberCmp.vue';
@@ -231,7 +228,7 @@ const OurBiz = [
 ]
 
 const ProcessType1 = [
-  {
+  {    
     "title": "SOFTWARE DEVELOPMENT",
     "customClass": "type1",
     "step": [
@@ -266,7 +263,7 @@ const ProcessType1 = [
     ],
     "description": "우리는 다수의 모바일 애플리케이션 및 웹사이트 등의 프로젝트 경험을 통해 최적의 개발 프로세스를 보유하고 이를 기반으로 최상의 결과물을 제작합니다.",
   },
-  {
+  {    
     "title": "PRODUCT DEVELOPMENT",
     "customClass": "type2",
     "step": [
@@ -404,12 +401,14 @@ const WorkListData = [
 
 const ProductData = [
   {
+    "sectionId": "serviceSection",
     "title": "OUR SERVICE", 
     "logoUrl": "/images/common/brand_logo1.svg",
     "description": "베일리는 육아의 어려움과 경력 단절의 문제점을 고민하고 언제 어디서든 아이와 함께 할 수 있는 서비스로 아이의 공동양육을 지원하는 육아 일기 서비스입니다",
     "images": "/temp/product01.png"
   },
   {
+    "sectionId": "productSection",
     "title": "OUR PRODUCT", 
     "logoUrl": "/images/common/brand_logo2.svg",
     "description":"베일리 팟은 신생아 수유에 대한 중요성과 어려움을 알고 보다 편한 수유와 수유가이드 및 기록을 위한 베이비 IoT 제품 입니다.",
@@ -451,4 +450,10 @@ const handleProdButtonClick = () => {
   console.log("handleProdButtonClick");
 }
 
+const handleProjectInquiry = () => {
+  const contactSection = document.getElementById('contactSection');
+  if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 </script>
