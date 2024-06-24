@@ -31,16 +31,15 @@
             <el-menu-item index="2"><el-link :underline="false" href="#workSection">works</el-link></el-menu-item>
             <el-menu-item index="3"><el-link :underline="false" href="#serviceSection">service</el-link></el-menu-item>
             <el-menu-item index="4"><el-link :underline="false" href="#productSection">product</el-link></el-menu-item>
-            <el-menu-item index="5" class="box-type"><el-link :underline="false" href="#contactSection">contact us</el-link></el-menu-item>                                                
+            <el-menu-item index="5" class="box-type">
+                <el-link :underline="false" href="#contactSection">contact us</el-link></el-menu-item>                                                
         </el-menu>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-// const activeIndex = ref('1')
-// const activeIndex2 = ref('1')
 const topNavigation = ref(false);
 const topNavigationMoved = ref(false);
 const openMoGnb = () => {
@@ -56,10 +55,10 @@ const openMoGnb = () => {
         }, 100); 
     }
 }
-const handleSelect = (key, keyPath) => {
-    console.log(key, keyPath)
-    const sectionId = keyPath[0].split('-').join('Section'); // 각 섹션의 ID와 일치하도록 조정
+const handleSelect = (key, keyPath) => {    
+    const sectionId = keyPath[0].split('-').join('section'); // 각 섹션의 ID와 일치하도록 조정
     const section = document.getElementById(sectionId);
+    console.log(sectionId)
     if (section) {
         setTimeout(() => {
             section.scrollIntoView({ behavior: 'smooth' });
