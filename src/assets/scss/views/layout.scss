@@ -281,6 +281,10 @@ body {
         }
       }
     }
+    &.is-disabled {
+      opacity: 0.5;
+      cursor:default;
+    }
     i {
         display: flex;
         align-items: center;
@@ -1124,6 +1128,7 @@ body {
       .el-form-item__error {
         margin-top: 10px;
         margin-left: 10px;
+        position: relative;
       }
       .el-textarea {
         background: transparent;
@@ -1299,7 +1304,7 @@ body {
     }
   } 
 }
-
+.port-content__wrap {background-color: #fff;}
 .el-tabs__nav-wrap:after,
 .el-tabs__active-bar {display: none;}
 .el-tabs__content {

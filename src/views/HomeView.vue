@@ -91,7 +91,7 @@
         <ProductCmp
           :ProductData="ProductData"
           className="slideup"
-          @button-click="handleProdButtonClick"          
+          @click="handleProdButtonClick"          
         />
         <!-- contact -->
         <ContactCmp />
@@ -450,6 +450,7 @@ const HandleInquiry = ({ Biz, index }) => {
 
 const handleProdButtonClick = () => {
   console.log("handleProdButtonClick");
+  dialogWorkDetailModal.value = true;  
 }
 
 const handleProjectInquiry = () => {
@@ -459,6 +460,7 @@ const handleProjectInquiry = () => {
   }
 }
 
+// 스크롤 애니메이션
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 });

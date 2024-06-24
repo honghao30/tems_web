@@ -27,7 +27,8 @@
                 style="max-width: 100%"
                 :model="ruleForm"
                 :rules="rules"                            
-                :size="formSize"                
+                :size="formSize" 
+                @submit.native.prevent               
                 >
                     <el-form-item label="Your name" prop="name">
                         <el-input v-model="ruleForm.name" placeholder="이름을 입력하세요." />
@@ -41,6 +42,7 @@
                     <el-form-item>
                         <InquiryButton
                             ButtonName="문의 하기"
+                            :disabled="!isFormValid"
                             @click="onSubmit"
                         />                  
                     </el-form-item>
@@ -74,7 +76,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import InquiryButton from '@/components/InquiryButtonCmp.vue';
 const formSize = ref('default')
 const ruleForm = reactive({
@@ -86,7 +88,7 @@ const ruleForm = reactive({
 const rules = reactive({
     name: [
         { required: true, message: 'Please input you name', trigger: 'blur' },
-        { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+        { min: 3, max: 15, message: '이름은 2자 이상 입력해야 합니다.', trigger: 'blur' },
     ],
     email: [
         { required: true, message: 'Please input email form', trigger: 'blur' },
@@ -95,18 +97,29 @@ const rules = reactive({
         { required: true, message: 'Please input message', trigger: 'blur' },
     ],
 })
+const isFormValid = computed(() => {
+    return ruleForm.name.length > 0 &&
+    ruleForm.email.length > 0 &&
+    ruleForm.desc.length > 0;
+});
+
 
 const dialogVisible = ref(false)
 
-const onSubmit = () => {
-    dialogVisible.value = true
+const onSubmit = async () => {
+    try {        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log(JSON.stringify(ruleForm));
+        dialogVisible.value = true;
+    } catch (error) {
+        console.error('Error submitting form:', error);
+    }
 }
 
 const handleClose = () => {  
     dialogVisible.value = false
 }
-const handleSendFrom = () => {
-    console.log(ruleForm.name, ruleForm.email, ruleForm.desc)    
+const handleSendFrom = () => {        
     dialogVisible.value = false
 }
 </script>
